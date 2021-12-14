@@ -1,0 +1,104 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 626px;
+}
+
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+}
+
+.profile__title {
+    margin-top: 64px;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 123px;
+}
+
+.profile__input {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    color: #000000;
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 16px 0;
+}
+
+.profile__input::placeholder {
+    text-align: left;
+}
+
+.profile__input:focus {
+    outline: none;
+    border-bottom: 1px solid #FF6838;
+}
+
+.name {
+
+}
+
+.mail {
+    border: none;
+}
+
+.profile__btn {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #000000;
+    border: none;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.profile__btn:hover {
+    opacity: 0.7;
+}
+
+
+.redact {
+    align-self: center;
+    margin-top: 220px;
+}
+
+.out {
+    color: #EE3465;
+    margin-top: 16px;
+    align-self: center;
+}
+
+@media (max-width: 440px) {
+    .profile__form {
+        width: calc(100% - 60px);
+    }
+}
+
+@media (max-width: 320px) {
+    .profile__form {
+        width: calc(100% - 28px);
+    }
+
+    .profile {
+        height: 100%;
+    }
+
+    .redact {
+        margin-top: 379px;
+    }
+}
+

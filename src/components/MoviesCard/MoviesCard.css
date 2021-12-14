@@ -1,0 +1,73 @@
+.card {
+    width: 270px;
+    position: relative;
+}
+
+.card__img {
+    width: 100%;
+    height: 151px;
+}
+
+.card__text {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #000000;
+    border-bottom: 1px solid #E8E8E8;
+    margin: 0;
+    padding: 14px 0 29px;
+}
+
+.card__duration {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    color: #A0A0A0;
+    padding-top: 6px;
+}
+
+.card__like {
+    position: absolute;
+    background: url(../../images/like.svg);
+    height: 24px;
+    width: 24px;
+    border: none;
+    right: 0;
+    top: 165px;
+    cursor: pointer;
+}
+
+.liked {
+    background: url(../../images/isLiked.svg);
+}
+
+.saved {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border: none;
+    right: 0;
+    top: 165px;
+    cursor: pointer;
+    background: url(../../images/saved.svg);
+}
+
+@media (max-width: 1024px) {
+    .card {
+        width: 339px;
+    }
+
+    .card__img {
+        height: 190px;
+    }
+
+    .card__like {
+        top: 205px;
+    }
+}
