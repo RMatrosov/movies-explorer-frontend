@@ -110,7 +110,7 @@
     .techs__subtitle {
         font-size: 18px;
         line-height: 22px;
-        padding:70px 0 28px;
+        padding: 70px 0 28px;
     }
 
     .techs__text {
@@ -138,6 +138,6 @@
 
 @media (max-width: 320px) {
     .techs__list {
-       width: 200px;
+        width: 200px;
     }
 }
