@@ -6,6 +6,8 @@ import Login from "../Login/Login";
 import Error404 from "../Error404/Error404";
 import {Route, Routes} from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 
 function App() {
@@ -13,7 +15,12 @@ function App() {
 
       <div className="App">
         <Routes>
-          <Route path="/" element={<Main/>}/>
+          <Route path="/" element={
+            <>
+              <Header/>
+              <Main/>
+              <Footer/>
+            </>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/signup" element={<Register/>}/>
           <Route path="/signin" element={<Login/>}/>

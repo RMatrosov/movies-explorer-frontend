@@ -49,6 +49,11 @@
     margin: 0;
 }
 
+.search__btn:hover {
+    opacity: 0.8;
+}
+
+
 @media (max-width: 1024px) {
     .search__container {
         width: calc(100% - 60px);

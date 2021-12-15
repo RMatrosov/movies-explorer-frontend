@@ -88,8 +88,9 @@
 }
 
 .active {
-    padding-bottom: 4px;
-    border-bottom: 2px solid #000000;
+    font-weight: 500;
+    /* padding-bottom: 4px;
+     border-bottom: 2px solid #000000;*/
 }
 
 .header__button-acc {
@@ -187,6 +188,11 @@
         background-color: #FFFFFF;
     }
 
+    .active {
+        padding-bottom: 4px;
+        border-bottom: 2px solid #000000;
+    }
+
     .header__button-acc-full, .header__logged-buttons {
         display: none;
     }
@@ -258,6 +264,7 @@
     .header__container {
         width: calc(100% - 36px);
     }
+
 
     .header__burger {
         width: 40px;

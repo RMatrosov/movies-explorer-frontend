@@ -109,7 +109,7 @@
     }
 
     .login__logo {
-        align-self: center;
+        margin: 0 auto;
     }
 
     .login__title {
