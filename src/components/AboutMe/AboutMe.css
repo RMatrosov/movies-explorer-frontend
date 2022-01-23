@@ -102,6 +102,18 @@
     margin-left: auto;
 }
 
+.aboutMe__link-a {
+    text-decoration: none;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
 @media (max-width: 1024px) {
     .aboutMe__container {
         width: calc(100% - 100px);

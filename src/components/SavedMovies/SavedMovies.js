@@ -1,19 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import {movieList} from "../../movieList";
 
-const SavedMovies = () => {
 
-  const [saved, setSaved] = useState(true);
+const SavedMovies = ({savedMovies, onSavedDelete, searchSavedMovies, setSavedShortSearched}) => {
 
   return (
-      <div>
+      <div className='saved__movies'>
         <Header type={'white'}/>
-        <SearchForm/>
-        <MoviesCardList saved={saved} movieList={movieList}/>
+        <SearchForm onSearch={searchSavedMovies} onChangeDuration={setSavedShortSearched}/>
+        {savedMovies === "NotFound" ? (
+            <p className="movies__not-found">Фильмы не найдены</p>
+        ) : (
+            <MoviesCardList savedMovies={savedMovies} onSavedDelete={onSavedDelete}/>
+        )}
         <Footer/>
       </div>
   );

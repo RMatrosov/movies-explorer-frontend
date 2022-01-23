@@ -75,6 +75,13 @@
     opacity: 0.7;
 }
 
+.button_disabled {
+    color: #B8B8B8;
+    background: #E5E5E5;
+    pointer-events: none;
+    user-select: none;
+}
+
 
 .login__btn-text {
     font-family: Inter, sans-serif;

@@ -103,6 +103,35 @@
     opacity: 0.7;
 }
 
+.log__in_error {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF3055;
+    align-self: flex-start;
+    padding-top: 10px;
+}
+
+.log__in_successful {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #0bdb20;
+    align-self: flex-start;
+    padding-top: 10px;
+}
+
+.button_disabled {
+    color: #B8B8B8;
+    background: #E5E5E5;
+    pointer-events: none;
+    user-select: none;
+}
+
 @media (max-width: 400px) {
     .register__form {
         width: 260px;

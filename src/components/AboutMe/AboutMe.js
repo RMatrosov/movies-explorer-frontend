@@ -13,8 +13,12 @@ const AboutMe = () => {
               С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал
               заниматься фриланс-заказами и ушёл с постоянной работы.</p>
             <ul className="aboutMe__links">
-              <li className="aboutMe__link">Facebook</li>
-              <li className="aboutMe__link">Github</li>
+              <li className="aboutMe__link">
+                <a rel="noreferrer" className="aboutMe__link-a" href="https://www.facebook.com/" target="_blank">Facebook</a>
+                </li>
+              <li className="aboutMe__link">
+                <a rel="noreferrer" className="aboutMe__link-a" href="https://github.com/" target="_blank">Github</a>
+                </li>
             </ul>
             <div className="aboutMe__img"/>
           </div>

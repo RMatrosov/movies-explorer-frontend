@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
+import {Context} from "../../context/Context";
+
 
 
 const Header = ({type}) => {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const context = React.useContext(Context);
 
   const [popupOpened, setPopupOpened] = useState(false)
 
@@ -15,7 +17,7 @@ const Header = ({type}) => {
   return (
       <header
           className={type === 'white' ? 'header header__white' : 'header'}>
-        {loggedIn && (
+        {context.loggedIn && (
             <nav className="header__container">
               <Link to="/" className="header__logo"/>
               <div className="header__logged-buttons">
@@ -39,7 +41,7 @@ const Header = ({type}) => {
           <nav className="header__menu">
             <button className="header__close-button" onClick={handleOpenMenu}/>
             <div className="header__links-container">
-              <NavLink exact to="/" className="header__link">Главная</NavLink>
+              <NavLink to="/" className="header__link">Главная</NavLink>
               <NavLink to="/movies" className="header__link"
                        onClick={handleOpenMenu}>Фильмы</NavLink>
               <NavLink to="/saved-movies" className="header__link"
@@ -50,7 +52,7 @@ const Header = ({type}) => {
             </Link>
           </nav>
         </div>
-        {!loggedIn && (
+        {!context.loggedIn && (
             <nav className="header__container">
               <Link to="/" className="header__logo header__logo_type_promo"/>
               <div className="header__buttons">
