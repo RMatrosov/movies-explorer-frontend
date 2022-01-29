@@ -22,7 +22,7 @@ const Register = ({handleRegister, registerError}) => {
 
   const {register, formState: {errors, isValid}, handleSubmit} = useForm({
     resolver: yupResolver(schema),
-    mode: "all",
+    mode: "onChange",
   });
 
   const [name, setName] = useState('');
@@ -32,6 +32,10 @@ const Register = ({handleRegister, registerError}) => {
   function onSubmit() {
     handleRegister(name, email, password)
   }
+
+  const nameField = register("name", { required: true });
+  const emailField = register("Email", { required: true });
+  const passwordField = register("password", { required: true });
 
   return (
       <div className='register'>
@@ -43,24 +47,33 @@ const Register = ({handleRegister, registerError}) => {
           <label className='register__label' htmlFor="name">Имя</label>
           <input className='register__input' id='name' type="text"
                  value={name || ''}
-                 {...register("name", {required: true})}
-                 onChange={(e) => setName(e.target.value)}
+                 {...nameField}
+                 onChange={(e) => {
+                   setName(e.target.value)
+                   nameField.onChange(e)
+                 }}
           />
           <span className='log__in_error'>{errors.name?.message}</span>
 
           <label className='register__label' htmlFor="E-mail">E-mail</label>
           <input className='register__input' id='E-mail' type="email"
                  value={email || ''}
-                 {...register("Email", {required: true})}
-                 onChange={(e) => setEmail(e.target.value)}
+                 {...emailField}
+                 onChange={(e) => {
+                   setEmail(e.target.value)
+                   emailField.onChange(e)
+                 }}
           />
           <span className='log__in_error'>{errors.Email?.message}</span>
 
           <label className='register__label' htmlFor="password">Пароль</label>
           <input className='register__input' id='password' type="password"
                  value={password || ''}
-                 {...register("password", {required: true})}
-                 onChange={(e) => setPassword(e.target.value)}
+                 {...passwordField}
+                 onChange={(e) => {
+                   setPassword(e.target.value)
+                   passwordField.onChange(e)
+                 }}
           />
           {registerError ? <span className='log__in_error'>Что-то пошло не так...</span>:
               <span className='log__in_error'>{errors.password?.message}</span>}

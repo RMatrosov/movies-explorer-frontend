@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FilterCheckbox = ({onChangeDuration}) => {
+const FilterCheckbox = ({onChangeDuration, checked}) => {
 
   function handleChange(event) {
     onChangeDuration(event.target.checked);
@@ -9,7 +9,7 @@ const FilterCheckbox = ({onChangeDuration}) => {
       <div className='checkbox'>
         <label className='checkbox__label' >
           <input type="checkbox" className='checkbox__input'
-                 onChange={handleChange}/>
+                 onChange={handleChange} checked={checked}/>
           <span className='checkbox__span'/>
         </label>
         <p className="checkbox__text">Короткометражки</p>

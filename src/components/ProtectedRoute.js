@@ -6,6 +6,7 @@ const ProtectedRoute = ({children}) => {
 
   const context = React.useContext(Context);
 
+
   return (
       context.loggedIn ? children : <Navigate to="/"/>
   );

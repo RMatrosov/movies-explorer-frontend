@@ -25,7 +25,7 @@ const Profile = ({handleUpdateUser, handleSignOut, profileUpdateError, updateSuc
 
   const {register, formState: {errors, isValid}, handleSubmit} = useForm({
     resolver: yupResolver(schema),
-    mode: "all",
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -39,6 +39,9 @@ const Profile = ({handleUpdateUser, handleSignOut, profileUpdateError, updateSuc
     handleUpdateUser(name, email)
   }
 
+  const nameField = register("name", { required: true });
+  const emailField = register("Email", { required: true });
+
   return (
       <>
         <Header type={'white'}/>
@@ -50,8 +53,11 @@ const Profile = ({handleUpdateUser, handleSignOut, profileUpdateError, updateSuc
               <input placeholder='Имя' type="text" className="profile__input name"
                      id='name'
                      value={name || ''}
-                     {...register("name", {required: true})}
-                     onChange={(e) => setName(e.target.value)}
+                     {...nameField}
+                     onChange={(e) => {
+                       setName(e.target.value)
+                       nameField.onChange(e)
+                     }}
               />
               <span className='log__in_error'>{errors.name?.message}</span>
             </div>
@@ -60,8 +66,11 @@ const Profile = ({handleUpdateUser, handleSignOut, profileUpdateError, updateSuc
               <label htmlFor="name" className="profile__input-label">E-mail</label>
               <input placeholder='E-mail' type="text" className="profile__input mail"
                      value={email || ''}
-                     {...register("Email", {required: true})}
-                     onChange={(e) => setEmail(e.target.value)}
+                     {...emailField}
+                     onChange={(e) => {
+                       setEmail(e.target.value)
+                       emailField.onChange(e)
+                     }}
               />
               {profileUpdateError ? <span className='log__in_error'>При обновлении профиля произошла ошибка.</span> :
                   <span className='log__in_error'>{errors.Email?.message}</span>}

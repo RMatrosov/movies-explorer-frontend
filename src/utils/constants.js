@@ -1,5 +1,4 @@
 
-
 export const BASE__URL = 'https://api.movies.list.nomoredomains.rocks';
 export const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 export const MOVIES_API = 'https://api.nomoreparties.co';

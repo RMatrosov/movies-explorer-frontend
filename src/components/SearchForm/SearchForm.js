@@ -4,6 +4,7 @@ import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
+
 const SearchForm = (props) => {
 
   const schema = yup.object().shape({
@@ -15,30 +16,33 @@ const SearchForm = (props) => {
 
   const {register, formState: {errors}, handleSubmit} = useForm({
     resolver: yupResolver(schema),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(props.searchQuery);
 
   function onSubmit() {
     props.onSearch(inputValue);
-    setInputValue('');
   }
 
+  const inputValueField = register("inputValue", { required: true });
 
   return (
       <div className='search'>
         <div className="search__container">
           <form className="search__form" onSubmit={handleSubmit(onSubmit)} noValidate>
             <input placeholder='Фильм' required type="text" className="search__input"
-                   value={inputValue || ''}
-                   {...register("inputValue", {required: true})}
-                   onChange={(e) => setInputValue(e.target.value)}
+                   value={inputValue}
+                   {...inputValueField}
+                   onChange={(e) => {
+                     setInputValue(e.target.value)
+                     inputValueField.onChange(e)
+                   }}
             />
             <button className="search__btn">Поиск</button>
           </form>
           <span className='log__in_error'>{errors.inputValue?.message}</span>
-          <FilterCheckbox onChangeDuration={props.onChangeDuration}/>
+          <FilterCheckbox onChangeDuration={props.onChangeDuration} checked={props.checked}/>
         </div>
       </div>
   );

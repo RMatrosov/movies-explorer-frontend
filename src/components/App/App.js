@@ -4,14 +4,14 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Error404 from "../Error404/Error404";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import {useCallback, useEffect, useState} from "react";
 import {Context} from "../../context/Context";
 import ProtectedRoute from "../ProtectedRoute";
-import {authorize, checkToken, register, signOut} from "../../utils/AuthApi";
+import {authorize, checkToken, register} from "../../utils/AuthApi";
 import {deleteMovies, getSavedMovies, getUserInfo, patchProfileInfo, saveMovie} from "../../utils/MainApi";
 import {getAllMovies} from "../../utils/MoviesApi";
 import {searchMovies} from "../../utils/utils";
@@ -20,7 +20,7 @@ import {shortDuration} from "../../utils/constants";
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({email: "", name: ""});
   const [registerError, setRegisterError] = useState(null);
   const [loginError, setAuthorizeError] = useState(null);
@@ -32,7 +32,16 @@ function App() {
           ? JSON.parse(localStorage.getItem("foundMovies"))
           : []
   );
-  const [shortSearched, setShortSearched] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(
+      localStorage.getItem("searchQuery")
+          ? JSON.parse(localStorage.getItem("searchQuery"))
+          : ''
+  );
+  const [checked, setChecked] = useState(
+      localStorage.getItem("checked")
+          ? JSON.parse(localStorage.getItem("checked"))
+          : false
+  );
   const [notFound, setNotFound] = useState(false);
   const [searchError, setSearchError] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -54,6 +63,7 @@ function App() {
             }
           })
           .catch((err) => {
+            setLoggedIn(false);
             console.log(err);
           });
     }
@@ -69,6 +79,7 @@ function App() {
             setSavedMoviesId(savedMoviesRes.data.map((movie) => movie.movieId));
           })
           .catch((err) => {
+            setLoggedIn(false);
             console.log(err);
           });
     }
@@ -103,19 +114,16 @@ function App() {
   }
 
   function handleSignOut() {
-    signOut()
-        .then((res) => {
-          setCurrentUser({email: "", name: ""});
-          setLoggedIn(false);
-          localStorage.removeItem("jwt");
-          localStorage.removeItem("foundMovies");
-          localStorage.removeItem("movies");
-          setMovies([]);
-          navigation("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    setCurrentUser({email: "", name: ""});
+    setLoggedIn(false);
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("foundMovies");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("searchQuery");
+    localStorage.removeItem("checked");
+    setMovies([]);
+    setSearchQuery('');
+    navigation("/");
   }
 
   function handleUpdateUser(name, email) {
@@ -139,6 +147,7 @@ function App() {
     setSearchLoading(true);
     setNotFound(false);
     setSearchError(false);
+    localStorage.removeItem("searchQuery");
     try {
       let movies = JSON.parse(localStorage.getItem("movies"));
 
@@ -149,6 +158,8 @@ function App() {
       }
       const foundMovies = searchMovies(movies, value);
       localStorage.setItem("foundMovies", JSON.stringify(foundMovies));
+      localStorage.setItem("searchQuery", JSON.stringify(value));
+      setSearchQuery(value)
       handleShortSearch();
     } catch (err) {
       console.log(err);
@@ -176,9 +187,10 @@ function App() {
 
   function handleShortSearch() {
     const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
+    localStorage.setItem("checked", JSON.stringify(checked));
 
     const shortMovies = foundMovies.filter((movie) => {
-      if (shortSearched) {
+      if (checked) {
         if (movie.duration < shortDuration) {
           return true;
         }
@@ -194,7 +206,7 @@ function App() {
     if (localStorage.getItem("foundMovies")) {
       handleShortSearch();
     }
-  }, [shortSearched]);
+  }, [checked]);
 
   function handleSaveMovie(movie) {
     const jwt = localStorage.getItem("jwt");
@@ -245,18 +257,23 @@ function App() {
                 profileUpdateError={profileUpdateError} updateSuccessful={updateSuccessful}
             /></ProtectedRoute>}/>
             <Route exact path="/signup"
-                   element={<Register registerError={registerError} handleRegister={handleRegister}/>}/>
-            <Route exact path="/signin" element={<Login loginError={loginError} handleAuthorize={handleAuthorize}/>}/>
+                   element={!loggedIn ? <Register registerError={registerError} handleRegister={handleRegister}/> :
+                       <Navigate to='/movies'/>}/>
+            <Route exact path="/signin"
+                   element={!loggedIn ? <Login loginError={loginError} handleAuthorize={handleAuthorize}/> :
+                       <Navigate to='/movies'/>}/>
             <Route exact path="/movies" element={<ProtectedRoute><Movies
                 notFound={notFound}
                 searchError={searchError}
                 searchLoading={searchLoading}
-                onChangeDuration={setShortSearched}
+                onChangeDuration={setChecked}
                 onSearch={handleSearchMovies}
                 movies={movies}
                 savedMoviesId={savedMoviesId}
                 onSave={handleSaveMovie}
                 onDelete={handleDeleteMovie}
+                searchQuery={searchQuery}
+                checked={checked}
             /></ProtectedRoute>}/>
             <Route exact path="/saved-movies" element={<ProtectedRoute><SavedMovies
                 savedMovies={savedKeyWord || isOnlyCheckedSearch
@@ -268,7 +285,7 @@ function App() {
                 searchSavedMovies={searchSavedMovies}
                 setSavedShortSearched={setSavedShortSearched}
             /></ProtectedRoute>}/>
-            <Route exact path="*" element={<Error404/>}/>
+            <Route path="*" element={<Error404/>}/>
           </Routes>
         </Context.Provider>
       </div>

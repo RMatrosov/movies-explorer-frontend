@@ -15,13 +15,16 @@ const Movies = ({
                   onSave,
                   notFound,
                   searchError,
-                  searchLoading
+                  searchLoading,
+                  searchQuery,
+                  checked
                 }) => {
 
   return (
       <div className='movies'>
         <Header type={'white'}/>
-        <SearchForm onSearch={onSearch} onChangeDuration={onChangeDuration}/>
+        <SearchForm onSearch={onSearch} onChangeDuration={onChangeDuration} searchQuery={searchQuery}
+                    checked={checked}/>
         {searchLoading ? <Preloader /> : null}
         {notFound ? (
             <p className="movies__not-found">Ничего не найдено</p>

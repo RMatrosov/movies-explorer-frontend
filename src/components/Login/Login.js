@@ -18,7 +18,7 @@ const Login = ({handleAuthorize, loginError}) => {
 
   const {register, formState: {errors, isValid}, handleSubmit} = useForm({
     resolver: yupResolver(schema),
-    mode: "all",
+    mode: "onChange",
   });
 
   const [email, setEmail] = useState('');
@@ -27,6 +27,9 @@ const Login = ({handleAuthorize, loginError}) => {
   function onSubmit() {
     handleAuthorize(email, password)
   }
+
+  const emailField = register("Email", { required: true });
+  const passwordField = register("password", { required: true });
 
   return (
       <div className='login'>
@@ -38,16 +41,22 @@ const Login = ({handleAuthorize, loginError}) => {
           <label className='login__label' htmlFor="E-mail">E-mail</label>
           <input className='login__input' id='E-mail' type="email"
                  value={email || ''}
-                 {...register("Email", {required: true})}
-                 onChange={(e) => setEmail(e.target.value)}
+                 {...emailField}
+                 onChange={(e) => {
+                   setEmail(e.target.value)
+                   emailField.onChange(e)
+                 }}
           />
           <span className='log__in_error'>{errors.Email?.message}</span>
 
           <label className='login__label' htmlFor="password">Пароль</label>
           <input className='login__input' id='password' type="password"
                  value={password || ''}
-                 {...register("password", {required: true})}
-                 onChange={(e) => setPassword(e.target.value)}
+                 {...passwordField}
+                 onChange={(e) => {
+                   setPassword(e.target.value)
+                   passwordField.onChange(e)
+                 }}
           />
           {loginError ? <span className='log__in_error'>Что то пошло не так...</span> :
               <span className='log__in_error'>{errors.password?.message}</span>}

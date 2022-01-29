@@ -24,12 +24,6 @@ export const authorize = (email, password) => {
   })
       .then(res => checkResponse(res))
 }
-export const signOut = () => {
-  return fetch(`${BASE__URL}/signout`, {
-    method: 'DELETE',
-    credentials: 'include',
-  })
-}
 
 export const checkToken = (token) => {
   return fetch(`${BASE__URL}/users/me`, {
