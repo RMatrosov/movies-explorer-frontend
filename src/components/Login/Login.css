@@ -1,0 +1,143 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    width: 396px;
+}
+
+.login__logo {
+    height: 38px;
+    width: 38px;
+    background: url(../../images/logo.svg) no-repeat;
+}
+
+.login__title {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 40px 0;
+}
+
+.login__label {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #A0A0A0;
+    padding-top: 28px;
+    padding-bottom: 5px;
+}
+
+.login__input {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+
+.login__input:focus {
+    outline: none;
+    border-bottom: 1px solid #FF6838;
+}
+
+.login__submit {
+    background: #FF6838;
+    border-radius: 3px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+    margin-top: 150px;
+}
+
+.login__submit:hover {
+    opacity: 0.7;
+}
+
+.button_disabled {
+    color: #B8B8B8;
+    background: #E5E5E5;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+.login__btn-text {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #A0A0A0;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.login__btn {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FF6838;
+    background: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
+.login__btn:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 400px) {
+    .login__form {
+        width: 260px;
+    }
+
+    .login__logo {
+        margin: 0 auto;
+    }
+
+    .login__title {
+        align-self: center;
+        margin-bottom: 52px;
+    }
+
+    .login__submit {
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: 227px;
+    }
+
+    .login__btn-text {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .login__btn {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+

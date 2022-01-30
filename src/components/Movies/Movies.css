@@ -1,0 +1,26 @@
+.movies {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.movies__not-found {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: red;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin: 90px 0;
+}
+
+.movies__search-error {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: red;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin: 90px 0;
+}

@@ -1,0 +1,180 @@
+.project {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.project__container {
+    width: calc(100% - 140px);
+    margin: 0 auto;
+}
+
+.project__title {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    color: #000000;
+    margin: 140px 0 0;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 23px;
+}
+
+.project__infos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project__info {
+    width: 48%;
+}
+
+.project__info-title {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #000000;
+    margin: 70px 0 26px;
+}
+
+.project__info-text {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    margin: 0;
+}
+
+.project__weeks {
+    display: flex;
+    padding-top: 110px;
+}
+
+.project__weeks-back {
+    background: #2BE080;
+    min-height: 36px;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.project__weeks-front {
+    min-height: 36px;
+    height: 100%;
+    width: 80%;
+    background: #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.project__weeks-infos {
+    display: flex;
+}
+
+.project__weeks-info {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #A0A0A0;
+    margin: 23px 0 110px;
+}
+
+.project__weeks-info:first-child {
+    width: 20%;
+}
+
+.project__weeks-info:last-child {
+    width: 80%;
+}
+
+@media (max-width: 1024px) {
+    .project__container {
+        width: calc(100% - 100px);
+    }
+}
+
+@media (max-width: 450px) {
+    .project__container {
+        width: calc(100% - 36px);
+    }
+
+    .project__infos {
+        flex-direction: column;
+    }
+
+    .project__info {
+        width: 100%;
+    }
+
+    .project__info-title {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 60px 0 16px;
+    }
+
+    .project__info-text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .project__title {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 70px 0 0;
+        padding-bottom: 28px;
+    }
+
+    .project__weeks-info:first-child {
+        width: 35%;
+    }
+
+    .project__weeks-info:last-child {
+        width: 65%;
+    }
+
+    .project__weeks-info {
+        font-size: 11px;
+        line-height: 13px;
+        margin: 10px 0 70px;
+    }
+
+    .project__weeks-back {
+        width: 35%;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .project__weeks-front {
+        width: 65%;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .project__weeks {
+        padding-top: 60px;
+    }
+}
